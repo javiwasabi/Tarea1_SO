@@ -63,8 +63,8 @@ int main() {
     if (result.cant_lineas > 0) {
         printf("Nombre del archivo: %s\n", result.nombre);
         printf("Numero de lineas: %d\n", result.cant_lineas);
-        printf("Letras por linea: %d\n", result.cant_letras);
+        printf("Letras por linea: %d\n", result.cant_letras); //Duplicar numero en caso de contar espacios
     }
-
+    
     return 0;
 }
