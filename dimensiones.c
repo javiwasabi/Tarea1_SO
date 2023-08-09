@@ -6,6 +6,7 @@ typedef struct {
     int cant_lineas;
     int cant_letras;
     char nombre[100];
+    char tipo[15];
 } InfoLinea;
 
 InfoLinea contador_general(const char *nombre_archivo) {
@@ -24,13 +25,19 @@ InfoLinea contador_general(const char *nombre_archivo) {
     if (fPointer) {
         char tamano[1000];
         
+        if (fgets(info.tipo, sizeof(info.tipo),fPointer) != NULL){
+            info.tipo[strcspn(info.tipo, "\n")] = '\0';
+        } else {
+            perror("Error al leer la primera linea");
+        }
         // Se salta la primera linea
+        /*
         if (fgets(tamano, sizeof(tamano), fPointer) == NULL) {
             perror("Error al leer la primera linea");
             fclose(fPointer);
             return info;
         }
-        
+        */
         // Empieza a contar
         if (fgets(tamano, sizeof(tamano), fPointer) != NULL) {
             info.cant_lineas = 1;
@@ -52,7 +59,7 @@ InfoLinea contador_general(const char *nombre_archivo) {
     } else {
         perror("Error al leer el archivo");
     }
-    info.cant_lineas ++;
+    //info.cant_lineas ++;
     return info;
 }
 
@@ -61,6 +68,7 @@ int main() {
     InfoLinea result = contador_general(nombre_archivo);
     
     if (result.cant_lineas > 0) {
+        printf("Tipo de Resolucion: %s\n", result.tipo);
         printf("Nombre del archivo: %s\n", result.nombre);
         printf("Numero de lineas: %d\n", result.cant_lineas);
         printf("Letras por linea: %d\n", result.cant_letras); //Duplicar numero en caso de contar espacios
