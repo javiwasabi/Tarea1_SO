@@ -57,7 +57,7 @@ InfoLinea contador_general(const char *nombre_archivo) {
 }
 
 int main() {
-    const char *nombre_archivo = "banco.txt";
+    const char *nombre_archivo = "carro.txt";
     InfoLinea result = contador_general(nombre_archivo);
     
     if (result.cant_lineas > 0) {
