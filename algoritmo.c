@@ -91,10 +91,10 @@ int horizontal_aux(char * nombre, char * str){
     char * resultado = strstr(str,nombre);
 
     if (resultado != NULL){
-        printf("Se hace hecho un match\n");
+        //printf("Se hace hecho un match\n");
         return 1;
     } else {
-        printf("No se ha encontrado la palabra\n");
+        //printf("No se ha encontrado la palabra\n");
         return 0;
     }
 }
