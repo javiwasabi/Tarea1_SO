@@ -46,3 +46,7 @@ InfoLinea contador_general(const char *nombre_archivo) {
     
     return info;
 }
+
+void horizontal() {
+    
+}

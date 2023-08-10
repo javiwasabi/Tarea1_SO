@@ -2,7 +2,7 @@
 #include "algoritmo.h"
 
 int main() {
-    const char *nombre_archivo = "carro.txt";
+    const char *nombre_archivo = "casa.txt";
     InfoLinea result = contador_general(nombre_archivo);
     
     if (result.cant_lineas > 0) {

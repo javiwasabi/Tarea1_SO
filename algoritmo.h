@@ -10,4 +10,6 @@ typedef struct {
 
 InfoLinea contador_general(const char *nombre_archivo);
 
+void horizontal();
+
 #endif
