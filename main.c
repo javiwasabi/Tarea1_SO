@@ -13,5 +13,8 @@ int main() {
     }
     
     horizontal(&result);
+
+    //printf("\n");
+    //int i = horizontal_aux(result.nombre, "CASA");
     return 0;
 }

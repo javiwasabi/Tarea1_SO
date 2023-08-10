@@ -63,9 +63,12 @@ void horizontal(InfoLinea * infosuck) {
             }
 
             nlinea[minicont] = '\0';
-            printf("Original Line: %s", linea);
-            printf("Line without spaces: %s\n", nlinea);
-
+            //printf("Original Line: %s", linea);
+            //printf("Line without spaces: %s\n", nlinea);
+            if (horizontal_aux(infosuck->nombre,nlinea) == 1){
+                printf("Felicitaciones, se ha encontrado la palabra\n");
+                break;
+            }
         }
 
         fclose(file);
@@ -75,6 +78,26 @@ void horizontal(InfoLinea * infosuck) {
     }
 }
 
-int horizontal_aux(char * str){
-    
+int horizontal_aux(char * nombre, char * str){
+    size_t len = strlen(nombre);
+    if (len >= 4){
+        nombre[len - 4] = '\0';
+    } else {
+        perror("El nombre del archivo es demasiado corto");
+    }
+
+    for (int i = 0; nombre[i] != '\0'; i++){
+        nombre[i] = toupper(nombre[i]);
+    }
+
+    char * resultado = strstr(str,nombre);
+
+    if (resultado != NULL){
+        printf("Se hace hecho un match\n");
+        return 1;
+    } else {
+        printf("No se ha encontrado la palabra\n");
+        return 0;
+    }
+    //printf("El nombre de la wea es: %s\n",nombre);
 }
