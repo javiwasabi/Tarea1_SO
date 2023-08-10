@@ -63,8 +63,6 @@ void horizontal(InfoLinea * infosuck) {
             }
 
             nlinea[minicont] = '\0';
-            //printf("Original Line: %s", linea);
-            //printf("Line without spaces: %s\n", nlinea);
             if (horizontal_aux(infosuck->nombre,nlinea) == 1){
                 printf("Felicitaciones, se ha encontrado la palabra\n");
                 break;
@@ -99,5 +97,4 @@ int horizontal_aux(char * nombre, char * str){
         printf("No se ha encontrado la palabra\n");
         return 0;
     }
-    //printf("El nombre de la wea es: %s\n",nombre);
 }
