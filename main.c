@@ -12,5 +12,6 @@ int main() {
         printf("Letras por linea: %d\n", result.cant_letras); //Duplicar numero en caso de contar espacios
     }
     
+    horizontal(&result);
     return 0;
 }

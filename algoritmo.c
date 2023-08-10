@@ -47,6 +47,34 @@ InfoLinea contador_general(const char *nombre_archivo) {
     return info;
 }
 
-void horizontal() {
+void horizontal(InfoLinea * infosuck) {
+    FILE * file = fopen(infosuck->nombre,"r");
+    if (file){
+        char linea[1000];
+        while (fgets(linea, sizeof(linea),file) != NULL){
+            char nlinea[1000];
+            int minicont = 0;
+
+            for (int i = 0; linea[i] != '\0'; i++){
+                if (!isspace(linea[i])){
+                    nlinea[minicont] = linea[i];
+                    minicont++;
+                }
+            }
+
+            nlinea[minicont] = '\0';
+            printf("Original Line: %s", linea);
+            printf("Line without spaces: %s\n", nlinea);
+
+        }
+
+        fclose(file);
+
+    } else {
+        perror("Error al abrir el archivo");
+    }
+}
+
+int horizontal_aux(char * str){
     
 }
