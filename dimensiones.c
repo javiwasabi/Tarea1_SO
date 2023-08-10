@@ -30,14 +30,7 @@ InfoLinea contador_general(const char *nombre_archivo) {
         } else {
             perror("Error al leer la primera linea");
         }
-        // Se salta la primera linea
-        /*
-        if (fgets(tamano, sizeof(tamano), fPointer) == NULL) {
-            perror("Error al leer la primera linea");
-            fclose(fPointer);
-            return info;
-        }
-        */
+        
         // Empieza a contar
         if (fgets(tamano, sizeof(tamano), fPointer) != NULL) {
             info.cant_lineas = 1;
