@@ -14,6 +14,11 @@ int main() {
     
     horizontal(&result);
 
+    printf("Hasta aqui se ejecuta lo inicial \n");
+
+    printf("Ahora lo de la matriz\n");
+
+    //matriz('perro.txt');
     //printf("\n");
     //int i = horizontal_aux(result.nombre, "CASA");
     return 0;

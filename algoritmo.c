@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <string.h>
+#include <stdbool.h>
 
 InfoLinea contador_general(const char *nombre_archivo) {
     InfoLinea info = {0, 0, ""};
@@ -98,3 +99,78 @@ int horizontal_aux(char * nombre, char * str){
         return 0;
     }
 }
+/*
+char matriz(char * nombre_archivo){
+
+    InfoLinea inf = contador_general(nombre_archivo);
+
+    char confirnom[100] = inf.nombre;
+    char Matrix[inf.cant_letras][inf.cant_lineas];
+
+    FILE *fPointer = fopen(nombre_archivo, "r");
+    int fila = 0;
+
+    while (!feof(fPointer)){
+
+        for(int i = 0; i < inf.cant_lineas; i++){
+
+
+           if(fscanf(fPointer, "%c", &Matrix[fila][i]) == EOF){
+                break;
+            }else{
+                if(fPointer != " "){
+                    fscanf(fPointer, "%c", &Matrix[fila][i]);
+                };
+            }; 
+        };
+
+        fila++;
+
+        if (fila == inf.cant_letras){
+            break;
+        }
+    };
+
+    fclose(fPointer);
+
+    for(int i = 0; i< inf.cant_letras; i++){
+        for(int j= 0; j< inf.cant_lineas; j++){
+            printf("%c", Matrix[i][j]);
+        }
+        printf('\n');
+
+    };
+
+}
+
+void vertical(char nom[], const char nomb){
+
+    char matrixx = matriz(nomb);
+    InfoLinea inff = contador_general(nomb);
+    bool flag = true;
+    char *p = &nom[0];
+
+    for (int c = 0; c< inff.cant_lineas; c++){
+
+        char *p = &nom[0];
+
+        for ( int f= 0; f< inff.cant_letras; f++){
+
+            if(p == matrixx[&c][&f] ){
+                p++;
+            }
+            if(p == ""  || *p == NULL){
+
+                printf("Se ha encontrado la palabra con éxito\n");
+                flag = false;
+            }
+    }
+    if (flag){
+        printf("No se encontró la palabra\n");
+        }
+
+    }
+
+}
+
+*/

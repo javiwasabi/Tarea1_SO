@@ -13,4 +13,7 @@ InfoLinea contador_general(const char *nombre_archivo);
 void horizontal(InfoLinea * infosuck);
 int horizontal_aux(char * nombre, char * str);
 
+char matriz(char * nombre_archivo);
+void vertical(char nom[], const char nomb);
+
 #endif
