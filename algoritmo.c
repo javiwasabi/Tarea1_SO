@@ -82,6 +82,7 @@ void contador_general2(InfoLinea * inf){
 }
 
 void horizontal(InfoLinea * infosuck) {
+    bool flag = false;
     FILE * file = fopen(infosuck->nombre,"r");
     if (file){
         char linea[1000];
@@ -99,14 +100,16 @@ void horizontal(InfoLinea * infosuck) {
             nlinea[minicont] = '\0';
             if (horizontal_aux(infosuck->nombre,nlinea) == 1){
                 printf("Felicitaciones, se ha encontrado la palabra\n");
+                flag = true;
                 break;
             }
         }
 
         fclose(file);
 
-    } else {
-        perror("Error al abrir el archivo");
+    }
+    if (flag == false){
+        printf("No se ha encontrado la palabra\n");
     }
 }
 
@@ -132,3 +135,5 @@ int horizontal_aux(char * nombre, char * str){
         return 0;
     }
 }
+
+

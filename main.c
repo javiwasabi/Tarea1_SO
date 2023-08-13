@@ -11,15 +11,19 @@ int main() {
     }
 
     for (int i = 0; i < 4; i++){
+        
         printf("El nombre del archivo es: %s\n", result[i].nombre);
         printf("La orientacion del archivo: %s\n", result[i].tipo);
         printf("La dimension horizontal es: %d\n", result[i].cant_letras);
         printf("La dimension vertical es: %d\n", result[i].cant_lineas);
+        
+        if (strstr(result[i].tipo, "horizontal") != NULL){
+            horizontal(&result[i]);
+        }
+        printf("---------------------------\n");
     }
 
-    if (strstr(result[0].tipo, "horizontal") != NULL){
-        printf("EUREKA\n");
-    }
+    
     free(result);
     
     return 0;
