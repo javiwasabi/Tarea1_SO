@@ -44,14 +44,6 @@ InfoLinea * inicial(){
         //return;
     }
 
-    //printf("Hasta aqui todo bien \n");
-    /*
-    for (int i = 0; i < contador; i++){
-
-        printf("nombre del archivo es: %s\n", lista_general[i].nombre);
-        
-    }
-    */
     return lista_general;
 }
 
@@ -89,44 +81,6 @@ void contador_general2(InfoLinea * inf){
     //printf("EUREKAAAAAA\n");
 }
 
-/*
-
-InfoLinea contador_general(const char *nombre_archivo) {
-
-    FILE *fPointer = fopen(nombre_archivo, "r");
-    
-    if (fPointer) {
-        char tamano[1000];
-        
-        if (fgets(info.tipo, sizeof(info.tipo), fPointer) != NULL) {
-            info.tipo[strcspn(info.tipo, "\n")] = '\0';
-        } else {
-            perror("Error al leer la primera linea");
-        }
-        //-------------------------------------------------------------------------------------------------
-        if (fgets(tamano, sizeof(tamano), fPointer) != NULL) {
-            info.cant_lineas = 1;
-            for (int i = 0; tamano[i] != '\0'; i++) {
-                if (isalpha(tamano[i])) { // Chequea si el caracter es una letra
-                    info.cant_letras++;
-                }
-            }
-        } else {
-            perror("Error al leer la segunda linea");
-        }
-        
-        while (fgets(tamano, sizeof(tamano), fPointer) != NULL) {
-            info.cant_lineas++;
-        }
-        
-        fclose(fPointer);
-    } else {
-        perror("Error al leer el archivo");
-    }
-    
-    return info;
-}
-*/
 void horizontal(InfoLinea * infosuck) {
     FILE * file = fopen(infosuck->nombre,"r");
     if (file){

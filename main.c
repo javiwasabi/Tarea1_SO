@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "algoritmo.h"
+#include <string.h>
 
 int main() {
 
@@ -15,7 +16,12 @@ int main() {
         printf("La dimension horizontal es: %d\n", result[i].cant_letras);
         printf("La dimension vertical es: %d\n", result[i].cant_lineas);
         printf("\n");
+        if (strcmp(result[i].tipo, "horizontal ") == 0){
+            printf("Esta palabra es horizontal");
+        }
     }
+
+    
 
     free(result);
     
