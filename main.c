@@ -15,14 +15,11 @@ int main() {
         printf("La orientacion del archivo: %s\n", result[i].tipo);
         printf("La dimension horizontal es: %d\n", result[i].cant_letras);
         printf("La dimension vertical es: %d\n", result[i].cant_lineas);
-        printf("\n");
-        if (strcmp(result[i].tipo, "horizontal ") == 0){
-            printf("Esta palabra es horizontal");
-        }
     }
 
-    
-
+    if (strstr(result[0].tipo, "horizontal") != NULL){
+        printf("EUREKA\n");
+    }
     free(result);
     
     return 0;
