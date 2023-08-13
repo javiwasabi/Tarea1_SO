@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <stdlib.h>
 #include "algoritmo.h"
 
 int main() {
@@ -17,6 +18,10 @@ int main() {
     printf("Hasta aqui se ejecuta lo inicial \n");
 
     printf("Ahora lo de la matriz\n");
+
+    InfoLinea * testeeo = inicial();
+
+    free(testeeo);
 
     //matriz('perro.txt');
     //printf("\n");
