@@ -3,8 +3,6 @@
 #include <string.h>
 #include <stdlib.h>
 
-//#define _POSIX_SOURCE
-
 typedef struct {
     int cant_lineas;
     int cant_letras;
@@ -12,16 +10,15 @@ typedef struct {
     char tipo[15];
 } InfoLinea;
 
-int main(){
+InfoLinea * inicial(){
     int tamano = 12;
     int contador = 0;
     InfoLinea * lista_general = malloc (tamano * sizeof(InfoLinea)); //Arreglo dinamico
 
     if (lista_general == NULL){
         perror("Error al alocar memoria para la lista");
-        return 1;
+        //return;
     }
-
 
     DIR * directory;
     struct dirent * entry;
@@ -31,7 +28,7 @@ int main(){
 
     if (directory == NULL){
         printf("Error al abrir la carpeta\n");
-        return 1;
+        //return;
     }
 
     while ((entry = readdir(directory)) != NULL){
@@ -48,7 +45,7 @@ int main(){
 
     if (closedir(directory) == -1){
         printf("Error al cerrar el archivo\n");
-        return 1;
+        //return;
     }
 
     printf("Hasta aqui todo bien \n");
@@ -58,8 +55,15 @@ int main(){
         printf("nombre del archivo es: %s\n", lista_general[i].nombre);
         
     }
+    return lista_general;
+}
 
-    free(lista_general);
+int main(){
+    InfoLinea * testeo;
+    testeo = inicial();
 
-    return 0;
+    printf("\n");
+    printf("Testo\n");
+
+    free(testeo);
 }
