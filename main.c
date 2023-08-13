@@ -3,28 +3,21 @@
 #include "algoritmo.h"
 
 int main() {
-    const char *nombre_archivo = "casa.txt";
-    InfoLinea result = contador_general(nombre_archivo);
-    
-    if (result.cant_lineas > 0) {
-        printf("Tipo de Resolucion: %s\n", result.tipo);
-        printf("Nombre del archivo: %s\n", result.nombre);
-        printf("Numero de lineas: %d\n", result.cant_lineas);
-        printf("Letras por linea: %d\n", result.cant_letras); //Duplicar numero en caso de contar espacios
+
+    InfoLinea * result = inicial();
+    for (int i =0 ; i < 4; i++){
+        contador_general2(&result[i]);
     }
+
+    for (int i = 0; i < 4; i++){
+        printf("El nombre del archivo es: %s\n", result[i].nombre);
+        printf("La orientacion del archivo: %s\n", result[i].tipo);
+        printf("La dimension horizontal es: %d\n", result[i].cant_letras);
+        printf("La dimension vertical es: %d\n", result[i].cant_lineas);
+        printf("\n");
+    }
+
+    free(result);
     
-    horizontal(&result);
-
-    printf("Hasta aqui se ejecuta lo inicial \n");
-
-    printf("Ahora lo de la matriz\n");
-
-    InfoLinea * testeeo = inicial();
-
-    free(testeeo);
-
-    //matriz('perro.txt');
-    //printf("\n");
-    //int i = horizontal_aux(result.nombre, "CASA");
     return 0;
 }
