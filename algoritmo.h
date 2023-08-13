@@ -10,6 +10,8 @@ typedef struct {
 
 InfoLinea contador_general(const char *nombre_archivo);
 
+void contador_general2(InfoLinea * inf);
+
 void horizontal(InfoLinea * infosuck);
 int horizontal_aux(char * nombre, char * str);
 

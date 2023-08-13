@@ -31,7 +31,7 @@ InfoLinea * inicial(){
         
         //Segun una documentacion, si d_type es 8, significa que estas hablando de un archivo, no un directorio
         if (entry->d_type == 8 && strstr(entry->d_name,".txt") !=NULL && strcmp(entry->d_name + strlen(entry->d_name)-4,".txt") == 0 && strcmp(entry->d_name, "README.txt") != 0){
-            printf("File: %s\n", entry->d_name);
+            //printf("File: %s\n", entry->d_name);
             strcpy(lista_general[contador].nombre,entry->d_name);
             contador++;
             //Ahora de paso crearemos un arreglo dinamico del tamaño exacto a los casos donde el archivo termina en txt
@@ -44,25 +44,54 @@ InfoLinea * inicial(){
         //return;
     }
 
-    printf("Hasta aqui todo bien \n");
-
+    //printf("Hasta aqui todo bien \n");
+    /*
     for (int i = 0; i < contador; i++){
 
         printf("nombre del archivo es: %s\n", lista_general[i].nombre);
         
     }
+    */
     return lista_general;
 }
 
-InfoLinea contador_general(const char *nombre_archivo) {
-    InfoLinea info = {0, 0, ""};
+void contador_general2(InfoLinea * inf){
+    FILE *fPointer = fopen(inf->nombre, "r");
     
-    if (strlen(nombre_archivo) < 100) {
-        strcpy(info.nombre, nombre_archivo);
+    if (fPointer) {
+        char tamano[1000];
+        if (fgets(inf->tipo, sizeof(inf->tipo), fPointer) != NULL){
+            inf->tipo[strcspn(inf->tipo,"\n")] = '\0';
+        } else {
+            perror("Error al leer la primera linea");
+        }
+
+        if (fgets(tamano, sizeof(tamano), fPointer) != NULL) {
+            inf->cant_lineas = 1;
+            for (int i = 0; tamano[i] != '\0'; i++){
+                if (isalpha(tamano[i])){
+                    inf->cant_letras++;
+                }
+            }
+        } else {
+            perror("Error al leer la segunda linea, ¿Seguro que el archivo esta correcto?");
+        }
+
+        while (fgets(tamano, sizeof(tamano),fPointer)!= NULL){
+            inf->cant_lineas++;
+        }
+
+        fclose(fPointer);
     } else {
-        perror("Nombre del archivo es demasiado grande");
-        return info;
+        perror("Error al leer el archivo");
     }
+
+    //printf("EUREKAAAAAA\n");
+}
+
+/*
+
+InfoLinea contador_general(const char *nombre_archivo) {
 
     FILE *fPointer = fopen(nombre_archivo, "r");
     
@@ -74,7 +103,7 @@ InfoLinea contador_general(const char *nombre_archivo) {
         } else {
             perror("Error al leer la primera linea");
         }
-        
+        //-------------------------------------------------------------------------------------------------
         if (fgets(tamano, sizeof(tamano), fPointer) != NULL) {
             info.cant_lineas = 1;
             for (int i = 0; tamano[i] != '\0'; i++) {
@@ -97,7 +126,7 @@ InfoLinea contador_general(const char *nombre_archivo) {
     
     return info;
 }
-
+*/
 void horizontal(InfoLinea * infosuck) {
     FILE * file = fopen(infosuck->nombre,"r");
     if (file){
