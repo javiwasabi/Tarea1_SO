@@ -4,22 +4,21 @@
 #include <sys/stat.h>
 #include <unistd.h>
 
-void intString (int num, char * resultado){
-    snprintf(resultado, sizeof(resultado), "%d", num);
-}
+typedef struct {
+    int cant_lineas;
+    int cant_letras;
+    char nombre[100];
+    char tipo[15];
+} InfoLinea;
 
-void insertar(char * str1, char * str2, char * result){
-    snprintf(result,strlen(str1) + strlen(str2) + 4, "%sx%s", str1, str2);
-}
-
-void dimee(int num1, int num2, char * resultadof){
+void subPalabra(int num1, int num2, char * resultado){
     char resultado1[100];
     char resultado2[100];
 
-    intString(num1, resultado1);
-    intString(num2, resultado2);
+    snprintf(resultado1, sizeof(resultado1), "%d", num1);
+    snprintf(resultado2, sizeof(resultado2), "%d", num2);
 
-    insertar(resultado1,resultado2,resultadof);
+    snprintf(resultado, strlen(resultado1) + strlen(resultado2) + 4, "%sx%s", resultado1, resultado2);
 
 }
 
@@ -34,13 +33,20 @@ int createFolder(const char *foldername) {
     return 0;
 }
 
-int mover_hori(char * nombre){
+int mover_hori(InfoLinea * inf){
     char path[256];
-    printf("El lugar a mover es: CWD/%s/%s\n", "horizontal", nombre);
-    
-    snprintf(path, sizeof(path), "CWD/horizontal/50x50/%s", nombre);
+    char aux_nom [100];
+    char direc[10];
 
-    if (rename(nombre, path) != 0){
+    subPalabra(inf->cant_letras, inf->cant_lineas, direc);
+
+    strcpy(aux_nom, inf->nombre);
+
+    //printf("El lugar a mover es: CWD/%s/%s\n", "horizontal", aux_nom);
+    
+    snprintf(path, sizeof(path), "CWD/horizontal/%s/%s", direc,aux_nom);
+
+    if (rename(aux_nom, path) != 0){
         perror("Error al mover el archivo");
         return 1;
     }
@@ -78,7 +84,7 @@ int crearCarpetaEnHori(char * buffer, size_t size, char * name){
     }
 
     if (createFolder(name) != 0){
-        
+
     }
 
     if (chdir(buffer) != 0){
@@ -125,6 +131,12 @@ int main() {
 
     char cwd[1024];
 
+    InfoLinea test;
+
+    test.cant_letras = 50;
+    test.cant_lineas = 50;
+    strcpy(test.nombre,"myFile.txt");
+
     if (_inicio(cwd, sizeof(cwd)) != 0){
         perror("Error en la funcion '_inicio'");
     }
@@ -133,7 +145,7 @@ int main() {
         return 1; 
     }
 
-    if (mover_hori("myFile.txt") != 0){
+    if (mover_hori(&test) != 0){
         return 1;
     }
     
