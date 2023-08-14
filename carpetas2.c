@@ -33,7 +33,7 @@ int createFolder(const char *foldername) {
     return 0;
 }
 
-int mover_hori(InfoLinea * inf){
+int moverArchivo(InfoLinea * inf){
     char path[256];
     char aux_nom [100];
     char direc[10];
@@ -53,19 +53,74 @@ int mover_hori(InfoLinea * inf){
     return 0;
 }
 
-int moveFileToFolder(const char *filename, const char *destinationFolder) {
-    char newFilePath[256]; // Adjust the size as needed
-    
-    snprintf(newFilePath, sizeof(newFilePath), "%s/%s", destinationFolder, filename);
+int c_carpeta(char * buffer, size_t size, InfoLinea * inf){
+    char path[256];
+    char aux_nom[100];
+    char dimension[10];
 
-    if (rename(filename, newFilePath) != 0) {
-        perror("Error moving file");
+    subPalabra(inf->cant_letras,inf->cant_lineas,dimension);
+    strcpy(aux_nom, inf->nombre);
+
+    //snprintf(path, sizeof(path), "CWD/horizontal/%s/%s", dimension,aux_nom);
+
+
+    if(getcwd(buffer, size) == NULL){
+        perror("getcwd fallo");
         return 1;
     }
 
-    printf("File '%s' moved successfully to '%s'\n", filename, destinationFolder);
+    if (chdir("CWD") != 0){
+        return 1;
+    }
 
-    return 0;
+    if (strstr(inf->tipo, "horizontal") != NULL){
+
+        snprintf(path, sizeof(path), "CWD/horizontal/%s/%s", dimension,aux_nom);
+
+        if (chdir("horizontal") != 0){
+            return 1;
+        }
+        printf("Llego hasta aqui AAAA\n");
+        //Para el caso donde esto ocurra, asumiremos que no fue una falla del sistema, si no que la carpeta ya existe
+        if (createFolder(path) != 0){
+            
+            if (rename(aux_nom, path) != 0){
+                perror("Error al mover el archivo");
+                return 1;
+            }
+
+            if (chdir(buffer) != 0){
+                return 1;
+            }
+
+            return 0;
+        }
+
+        if (rename(aux_nom, path) != 0){
+            perror("Error al mover el archivo");
+            return 1;
+        }
+
+        if (chdir(buffer) != 0){
+            return 1;
+        }
+
+        return 0;
+    } else {
+        printf("no corrio xd\n");
+    }
+
+    // if (chdir("horizontal") != 0){
+    //     return 1;
+    // }
+
+    // if (createFolder(path) != 0){
+
+    // }
+
+    // if (chdir(buffer) != 0){
+    //     return 1;
+    // }
 }
 
 int crearCarpetaEnHori(char * buffer, size_t size, char * name){
@@ -119,16 +174,7 @@ int _inicio(char * buffer, size_t size){
     }
 }
 int main() {
-    // Creating a folder
-    // if (createFolder("myfolder") != 0) {
-    //     return 1;
-    // }
-
-    // // Moving a file to the folder
-    // if (moveFileToFolder("myFile.txt", "myfolder") != 0) {
-    //     return 1;
-    // }
-
+    
     char cwd[1024];
 
     InfoLinea test;
@@ -136,18 +182,26 @@ int main() {
     test.cant_letras = 50;
     test.cant_lineas = 50;
     strcpy(test.nombre,"myFile.txt");
+    strcpy(test.tipo,"horizontal");
 
     if (_inicio(cwd, sizeof(cwd)) != 0){
         perror("Error en la funcion '_inicio'");
     }
 
-    if (crearCarpetaEnHori(cwd, sizeof(cwd),"50x50") != 0){
-        return 1; 
+    // if (crearCarpetaEnHori(cwd, sizeof(cwd),"50x50") != 0){
+    //     return 1; 
+    // }
+
+    // if (moverArchivo(&test) != 0){
+    //     return 1;
+    // }
+    printf("Previa\n");
+
+    if (c_carpeta(cwd,sizeof(cwd), &test) != 0){
+        perror("ERROR FATAL");
     }
 
-    if (mover_hori(&test) != 0){
-        return 1;
-    }
+    printf("Corrio la wea,creo\n");
     
     return 0;
 }
