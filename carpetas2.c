@@ -38,7 +38,7 @@ int mover_hori(char * nombre){
     char path[256];
     printf("El lugar a mover es: CWD/%s/%s\n", "horizontal", nombre);
     
-    snprintf(path, sizeof(path), "CWD/horizontal/%s", nombre);
+    snprintf(path, sizeof(path), "CWD/horizontal/50x50/%s", nombre);
 
     if (rename(nombre, path) != 0){
         perror("Error al mover el archivo");
@@ -77,7 +77,9 @@ int crearCarpetaEnHori(char * buffer, size_t size, char * name){
         return 1;
     }
 
-    createFolder(name);
+    if (createFolder(name) != 0){
+        
+    }
 
     if (chdir(buffer) != 0){
         return 1;
@@ -126,17 +128,14 @@ int main() {
     if (_inicio(cwd, sizeof(cwd)) != 0){
         perror("Error en la funcion '_inicio'");
     }
-    
-
-    if (mover_hori("myFile.txt") != 0){
-        return 1;
-    }
 
     if (crearCarpetaEnHori(cwd, sizeof(cwd),"50x50") != 0){
         return 1; 
     }
 
-    
+    if (mover_hori("myFile.txt") != 0){
+        return 1;
+    }
     
     return 0;
 }
