@@ -62,6 +62,29 @@ int moveFileToFolder(const char *filename, const char *destinationFolder) {
     return 0;
 }
 
+int crearCarpetaEnHori(char * buffer, size_t size, char * name){
+
+    if(getcwd(buffer, size) == NULL){
+        perror("getcwd fallo");
+        return 1;
+    }
+
+    if (chdir("CWD") != 0){
+        return 1;
+    }
+
+    if (chdir("horizontal") != 0){
+        return 1;
+    }
+
+    createFolder(name);
+
+    if (chdir(buffer) != 0){
+        return 1;
+    }
+
+}
+
 
 int _inicio(char * buffer, size_t size){
     
@@ -108,7 +131,12 @@ int main() {
     if (mover_hori("myFile.txt") != 0){
         return 1;
     }
-    
 
+    if (crearCarpetaEnHori(cwd, sizeof(cwd),"50x50") != 0){
+        return 1; 
+    }
+
+    
+    
     return 0;
 }
