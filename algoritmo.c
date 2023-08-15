@@ -9,7 +9,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
-InfoLinea * inicial(){
+InfoLinea * inicial(int * cont){
     int tamano = 12;
     int contador = 0;
     InfoLinea * lista_general = malloc (tamano * sizeof(InfoLinea)); //Arreglo dinamico
@@ -47,6 +47,8 @@ InfoLinea * inicial(){
         //return;
     }
 
+    *cont = contador;
+
     return lista_general;
 }
 
@@ -58,7 +60,8 @@ void contador_general2(InfoLinea * inf){
         if (fgets(inf->tipo, sizeof(inf->tipo), fPointer) != NULL){
             inf->tipo[strcspn(inf->tipo,"\n")] = '\0';
         } else {
-            perror("Error al leer la primera linea");
+            perror("Error al leer la primera linea en:");
+            printf("%s\n", inf->nombre);
         }
 
         if (fgets(tamano, sizeof(tamano), fPointer) != NULL) {
@@ -180,8 +183,10 @@ int moverArchivo(InfoLinea * inf){
     //printf("El lugar a mover es: CWD/%s/%s\n", "horizontal", aux_nom);
     if (strcmp(inf->tipo, "horizontal") == 0){
         snprintf(path, sizeof(path), "CWD/horizontal/%s/%s", direc,aux_nom);
+        printf("Ahora moveremos el archivo: %s a su destino horizontal\n", aux_nom);
     } else {
         snprintf(path, sizeof(path), "CWD/vertical/%s/%s", direc,aux_nom);
+        printf("Ahora moveremos el archivo: %s a su destino vertical\n", aux_nom);
     }
     
     if (rename(aux_nom, path) != 0){

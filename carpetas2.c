@@ -149,7 +149,7 @@ int main() {
     test1.cant_letras = 50;
     test1.cant_lineas = 50;
     strcpy(test1.nombre,"myFile1.txt");
-    strcpy(test1.tipo,"vertical");
+    strcpy(test1.tipo,"horizontal");
 
     char palabra [200];
     subPalabra(test.cant_letras,test.cant_lineas,palabra);

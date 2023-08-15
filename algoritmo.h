@@ -1,3 +1,6 @@
+#include <stdio.h>
+
+
 #ifndef ALGORITMO_H
 #define ALGORITMO_H
 
@@ -12,7 +15,7 @@ typedef struct {
 /*FUNCIONES PARA EL USO DEL ARREGLO DINAMICO */
 void contador_general2(InfoLinea * inf);
 
-InfoLinea * inicial();
+InfoLinea * inicial(int * cont);
 
 
 /* FUNCIONES PARA EL USO DE LOS ALGORITMOS*/
