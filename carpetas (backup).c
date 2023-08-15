@@ -109,6 +109,32 @@ int crearCarpetaDimension(char * buffer, size_t size, InfoLinea * inf) {
 }
 
 
+int crearCarpetaEnHori(char * buffer, size_t size, char * name){
+
+    if(getcwd(buffer, size) == NULL){
+        perror("getcwd fallo");
+        return 1;
+    }
+
+    if (chdir("CWD") != 0){
+        return 1;
+    }
+
+    if (chdir("horizontal") != 0){
+        return 1;
+    }
+    //ESta lina es especifico para el nombre "50x50";
+    if (createFolder(name) != 0){
+
+    }
+
+    if (chdir(buffer) != 0){
+        return 1;
+    }
+
+}
+
+
 int _inicio(char * buffer, size_t size){
     
     if(getcwd(buffer, size) == NULL){
