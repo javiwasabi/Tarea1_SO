@@ -11,6 +11,24 @@ typedef struct {
     char tipo[15];
 } InfoLinea;
 
+int calculateAsciiDifference(const char *str1, const char *str2) {
+    int sum1 = 0, sum2 = 0;
+
+    // Calculate the sum of ASCII values for characters in the first string
+    for (int i = 0; i < strlen(str1); i++) {
+        sum1 += str1[i];
+    }
+
+    // Calculate the sum of ASCII values for characters in the second string
+    for (int i = 0; i < strlen(str2); i++) {
+        sum2 += str2[i];
+    }
+
+    // Return the difference between the two sums
+    return sum1 - sum2;
+}
+
+
 void subPalabra(int num1, int num2, char * resultado){
     char resultado1[100];
     char resultado2[100];
@@ -73,19 +91,22 @@ int c_carpeta(char * buffer, size_t size, InfoLinea * inf){
         return 1;
     }
 
+    printf("%s\n", aux_nom);
+
     if (strstr(inf->tipo, "horizontal") != NULL){
 
         snprintf(path, sizeof(path), "CWD/horizontal/%s/%s", dimension,aux_nom);
+        printf("%s\n", path);
 
         if (chdir("horizontal") != 0){
             return 1;
         }
         printf("Llego hasta aqui AAAA\n");
         //Para el caso donde esto ocurra, asumiremos que no fue una falla del sistema, si no que la carpeta ya existe
-        if (createFolder(path) != 0){
-            
+        if (createFolder(dimension) != 0){
+
             if (rename(aux_nom, path) != 0){
-                perror("Error al mover el archivo");
+                perror("Error al mover el archivo 1");
                 return 1;
             }
 
@@ -97,7 +118,7 @@ int c_carpeta(char * buffer, size_t size, InfoLinea * inf){
         }
 
         if (rename(aux_nom, path) != 0){
-            perror("Error al mover el archivo");
+            perror("Error al mover el archivo 2");
             return 1;
         }
 
@@ -137,9 +158,9 @@ int crearCarpetaEnHori(char * buffer, size_t size, char * name){
     if (chdir("horizontal") != 0){
         return 1;
     }
-
+    //ESta lina es especifico para el nombre "50x50";
     if (createFolder(name) != 0){
-
+        
     }
 
     if (chdir(buffer) != 0){
@@ -188,20 +209,20 @@ int main() {
         perror("Error en la funcion '_inicio'");
     }
 
-    // if (crearCarpetaEnHori(cwd, sizeof(cwd),"50x50") != 0){
-    //     return 1; 
-    // }
-
-    // if (moverArchivo(&test) != 0){
-    //     return 1;
-    // }
-    printf("Previa\n");
-
-    if (c_carpeta(cwd,sizeof(cwd), &test) != 0){
-        perror("ERROR FATAL");
+    if (crearCarpetaEnHori(cwd, sizeof(cwd),"50x50") != 0){
+        return 1; 
     }
 
-    printf("Corrio la wea,creo\n");
+    if (moverArchivo(&test) != 0){
+        return 1;
+    }
+    // printf("Previa\n");
+
+    // if (c_carpeta(cwd,sizeof(cwd), &test) != 0){
+    //     perror("ERROR FATAL");
+    // }
+
+    // printf("Corrio la wea,creo\n");
     
     return 0;
 }
