@@ -115,6 +115,10 @@ void matriz(InfoLinea * infosuck){
             char c = fgetc(file);
 
 
+        for(int i = 0; i < infosuck->cant_lineas; i++){
+            char c = fgetc(file);
+
+
            if(c == EOF || c == '\n'){
                 break;
             }if (c != ' ') {
@@ -152,7 +156,9 @@ int main(){
 
 
     InfoLinea * result = inicial(&cont);
+
     for (int i = 0; i < cont; i++){
+
         
         printf("El nombre del archivo es: %s\n", result[i].nombre);
         printf("La orientacion del archivo: %s\n", result[i].tipo);
@@ -162,4 +168,4 @@ int main(){
  
     // matriz(&result[0]);
     return 0;
-}
+
