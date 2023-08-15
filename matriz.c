@@ -131,7 +131,7 @@ void matriz(InfoLinea * infosuck){
         if (fila == infosuck->cant_letras){
             break;
         }
-    };
+    }
 
     fclose(file);
     printf("%i" , infosuck->cant_letras);
@@ -142,12 +142,8 @@ void matriz(InfoLinea * infosuck){
             printf("%c", Matrix[i][j]);
         }
         printf("\n");
-        
-
-
-    };
-   
-
+    }
+    }
 }
 
 int main(){

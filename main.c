@@ -25,41 +25,56 @@ int main() {
         printf("La dimension horizontal es: %d\n", result[i].cant_letras);
         printf("La dimension vertical es: %d\n", result[i].cant_lineas);
         
-        // subPalabra(result[i].cant_letras,result[i].cant_lineas,palabra);
-
-        // if (crearCarpetaDimension(cwd,sizeof(cwd),&result[i]) < 0){
-        //     return 1;
-        // }
-
-        // if (moverArchivo(&result[i]) != 0){
-        //     return 1;
-        // }
+        
 
         if (strstr(result[i].tipo, "horizontal") != NULL){
-            //horizontal(&result[i]);
-            
-            subPalabra(result[i].cant_letras,result[i].cant_lineas,palabra);
+            printf("Algoritmo horizontal a la marcha\n");
+            horizontal(&result[i]);
+            printf("Logro correr\n");
 
-            if (crearCarpetaDimension(cwd,sizeof(cwd),&result[i]) < 0){
-                return 1;
-            }
-
-            if (moverArchivo(&result[i]) != 0){
-                return 1;
-            }
-            
 
         } else {
-            subPalabra(result[i].cant_letras,result[i].cant_lineas,palabra);
-
-            if (crearCarpetaDimension(cwd,sizeof(cwd),&result[i]) < 0){
-                return 1;
-            }
-
-            if (moverArchivo(&result[i]) != 0){
-                return 1;
-            }
+            printf("Bueno todavia no funciona el algortimo vertical\n");
         }
+
+
+        subPalabra(result[i].cant_letras,result[i].cant_lineas,palabra);
+
+        if (crearCarpetaDimension(cwd,sizeof(cwd),&result[i]) < 0){
+            return 1;
+        }
+
+        if (moverArchivo(&result[i]) != 0){
+            return 1;
+        }
+
+
+        // if (strstr(result[i].tipo, "horizontal") != NULL){
+        //     //horizontal(&result[i]);
+            
+        //     subPalabra(result[i].cant_letras,result[i].cant_lineas,palabra);
+
+        //     if (crearCarpetaDimension(cwd,sizeof(cwd),&result[i]) < 0){
+        //         return 1;
+        //     }
+
+        //     if (moverArchivo(&result[i]) != 0){
+        //         return 1;
+        //     }
+            
+
+        // } else {
+        //     subPalabra(result[i].cant_letras,result[i].cant_lineas,palabra);
+
+        //     if (crearCarpetaDimension(cwd,sizeof(cwd),&result[i]) < 0){
+        //         return 1;
+        //     }
+
+        //     if (moverArchivo(&result[i]) != 0){
+        //         return 1;
+        //     }
+        // }
+
         printf("---------------------------\n");
     }
 
