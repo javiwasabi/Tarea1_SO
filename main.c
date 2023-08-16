@@ -33,8 +33,8 @@ int main() {
             printf("Logro correr\n");
 
 
-        } else {
-            printf("Bueno todavia no funciona el algortimo vertical\n");
+        }if(strstr(result[i].tipo, "vertical") != NULL){
+            vertical(&result[i]);
         }
 
 
