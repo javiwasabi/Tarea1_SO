@@ -23,6 +23,8 @@ void horizontal(InfoLinea * infosuck);
 
 int horizontal_aux(char * nombre, char * str);
 
+void vertical(InfoLinea * inf);
+
 /* FUNCINOES PARA LA CREACION DE LAS CARPETAS*/
 
 int _inicio(char * buffer, size_t size);
