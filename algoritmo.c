@@ -9,6 +9,7 @@
 #include <unistd.h>
 #include <sys/stat.h>
 
+
 InfoLinea * inicial(int * cont){
     int tamano = 12;
     int contador = 0;
@@ -267,3 +268,103 @@ int _inicio(char * buffer, size_t size){
         return 1;
     }
 }
+
+
+void vertical(InfoLinea * infosuck){
+
+// Creacion de matriz
+    char Matrix[infosuck->cant_letras][infosuck->cant_lineas];
+    FILE * file = fopen(infosuck->nombre,"r");
+    
+    if (file == NULL) {
+        printf("No se pudo abrir el archivo.\n");
+        return;
+    }
+
+    int fila = 0;
+
+    while (fila < infosuck->cant_lineas && !feof(file)){     
+        int p;
+
+        while ((p = fgetc(file)) != EOF && p!= '\n') {   //salto de la primera linea 
+        }
+
+        for(int i = 0; i < infosuck->cant_letras; i++){
+
+            char c = fgetc(file);
+            if(c == EOF ){
+                break;
+            }else if (c != ' ') {
+                Matrix[fila][i] = c;
+                
+            }else if (c != '\n') {
+                Matrix[fila][i] = c;
+             
+                
+            }if (c == ' '){
+                i--;
+            }; 
+        };
+
+        fila++;
+
+        if (fila == infosuck->cant_letras){
+            break;
+        }
+    };
+
+    fclose(file);
+    
+/* Ver matriz
+
+for(int i = 0; i< infosuck->cant_letras; i++){
+        for(int j= 0; j< infosuck->cant_lineas; j++){
+            printf("%c", Matrix[i][j]);
+        }
+        printf("\n");    
+    };
+*/   
+
+// Busqueda dentro de la matriz
+    bool flag = true;
+    char *p = &infosuck->nombre[0];
+   
+    for (int c = 0; c < infosuck->cant_letras; c++) { 
+        int num= 0;
+       
+        for (int f = 0; f< infosuck->cant_lineas; f++) { 
+                   
+            if (toupper(p[num]) == Matrix[f][c]) { 
+            
+                if (p[num+1] == '.') { 
+                    printf("\nSe ha encontrado la palabra con éxito\n");
+
+                    printf("La palabra es: \n");
+
+                    while (num >=0){
+                        printf(" %c", Matrix[f-num][c]);
+                        num--;
+                    };
+                    printf("\n");
+                   
+                    flag = false;
+                    break; 
+                }
+                num++;
+            }
+            else {
+            num = 0; 
+            }       
+        }
+
+        if (!flag) {
+            break; // Terminar el bucle externo si se encuentra la palabra
+        }
+    }
+
+    if (flag) {
+    printf("No se encontró la palabra\n");
+    }
+
+};
+
