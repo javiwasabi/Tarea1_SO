@@ -28,9 +28,9 @@ int main() {
         
 
         if (strstr(result[i].tipo, "horizontal") != NULL){
-            printf("Algoritmo horizontal a la marcha\n");
-            //horizontal(&result[i]);
-            printf("Logro correr\n");
+            //printf("Algoritmo horizontal a la marcha\n");
+            horizontal_2(&result[i]);
+            //printf("Logro correr\n");
 
 
         }if(strstr(result[i].tipo, "vertical") != NULL){

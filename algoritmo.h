@@ -20,6 +20,7 @@ InfoLinea * inicial(int * cont);
 
 /* FUNCIONES PARA EL USO DE LOS ALGORITMOS*/
 void horizontal(InfoLinea * infosuck);
+void horizontal_2(InfoLinea * inf);
 
 int horizontal_aux(char * nombre, char * str);
 
