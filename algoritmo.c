@@ -141,6 +141,7 @@ void horizontal_2(InfoLinea * inf){
 
         if (flag == false){
             printf("No se ha hecho un match\n");
+            end = clock();
         }
         fclose(file);
         //printf("Archivo cerrado correctamente\n");
