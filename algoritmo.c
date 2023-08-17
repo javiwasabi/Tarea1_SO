@@ -174,18 +174,20 @@ void horizontal(InfoLinea * infosuck) {
 }
 
 int horizontal_aux(char * nombre, char * str){
-    size_t len = strlen(nombre);
+    char auxNom[20];
+    strcpy(auxNom,nombre);
+    size_t len = strlen(auxNom);
     if (len >= 4){
-        nombre[len - 4] = '\0';
+        auxNom[len - 4] = '\0';
     } else {
         perror("El nombre del archivo es demasiado corto");
     }
 
-    for (int i = 0; nombre[i] != '\0'; i++){
-        nombre[i] = toupper(nombre[i]);
+    for (int i = 0; auxNom[i] != '\0'; i++){
+        auxNom[i] = toupper(auxNom[i]);
     }
 
-    char * resultado = strstr(str,nombre);
+    char * resultado = strstr(str,auxNom);
 
     if (resultado != NULL){
         //printf("Se hace hecho un match\n");
