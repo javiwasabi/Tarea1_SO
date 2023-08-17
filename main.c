@@ -29,7 +29,7 @@ int main() {
 
         if (strstr(result[i].tipo, "horizontal") != NULL){
             //printf("Algoritmo horizontal a la marcha\n");
-            horizontal(&result[i]);
+            horizontal_2(&result[i]);
             //printf("Logro correr\n");
 
 

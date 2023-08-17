@@ -8,6 +8,7 @@
 #include <errno.h>
 #include <unistd.h>
 #include <sys/stat.h>
+#include <time.h>
 
 
 InfoLinea * inicial(int * cont){
@@ -89,6 +90,9 @@ void contador_general2(InfoLinea * inf){
 }
 
 void horizontal_2(InfoLinea * inf){
+    clock_t start, end;
+    double cpu_time;
+    start = clock();
 
     char auxNom[20];
     strcpy(auxNom, inf->nombre);
@@ -128,6 +132,9 @@ void horizontal_2(InfoLinea * inf){
 
             if (resultado != NULL){
                 printf("Se ha hecho un match\n");
+                end = clock();
+                cpu_time = ((double)(end-start))/CLOCKS_PER_SEC;
+                printf("Tiempo de demora: %f segundos\n", cpu_time);
                 flag = true;
             }
         }
@@ -142,6 +149,10 @@ void horizontal_2(InfoLinea * inf){
 }
 
 void horizontal(InfoLinea * infosuck) {
+    clock_t start, end;
+    double cpu_time;
+    start = clock();
+
     bool flag = false;
     FILE * file = fopen(infosuck->nombre,"r");
     if (file){
@@ -160,6 +171,9 @@ void horizontal(InfoLinea * infosuck) {
             nlinea[minicont] = '\0';
             if (horizontal_aux(infosuck->nombre,nlinea) == 1){
                 printf("Felicitaciones, se ha encontrado la palabra\n");
+                end = clock();
+                cpu_time = ((double)(end - start)) / CLOCKS_PER_SEC;
+                printf("Tiempo de demora: %f segundos\n",cpu_time);
                 flag = true;
                 break;
             }
@@ -170,6 +184,7 @@ void horizontal(InfoLinea * infosuck) {
     }
     if (flag == false){
         printf("No se ha encontrado la palabra\n");
+        end = clock();
     }
 }
 
