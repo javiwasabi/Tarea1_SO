@@ -16,7 +16,7 @@ int main() {
     for (int i =0 ; i < cant_carpetas; i++){
         contador_general2(&result[i]);
     }
-
+    
     for (int i = 0; i < cant_carpetas; i++){
         char palabra [200];
 

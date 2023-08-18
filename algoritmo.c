@@ -74,7 +74,7 @@ void contador_general2(InfoLinea * inf){
                 }
             }
         } else {
-            perror("Error al leer la segunda linea, ¿Seguro que el archivo esta correcto?");
+            //perror("Error al leer la segunda linea, ¿Seguro que el archivo esta correcto?");
         }
 
         while (fgets(tamano, sizeof(tamano),fPointer)!= NULL){
@@ -230,7 +230,7 @@ void subPalabra(int num1, int num2, char * resultado){
 int createFolder(const char *foldername) {
     int resultado = mkdir(foldername, 0777);
     if (resultado == 0){
-        printf("Folder '%s' created successfully!\n", foldername);
+        //printf("Folder '%s' created successfully!\n", foldername);
         return 0;
     } else {
         if (errno == EEXIST) {
