@@ -234,7 +234,7 @@ int createFolder(const char *foldername) {
         return 0;
     } else {
         if (errno == EEXIST) {
-            fprintf(stderr, "La carpeta '%s' ya existe\n", foldername);
+            //fprintf(stderr, "La carpeta '%s' ya existe\n", foldername);
             return 1;
         } else {
             perror("Error en la creacion de archivos\n");
@@ -255,10 +255,10 @@ int moverArchivo(InfoLinea * inf){
     //printf("El lugar a mover es: CWD/%s/%s\n", "horizontal", aux_nom);
     if (strcmp(inf->tipo, "horizontal") == 0){
         snprintf(path, sizeof(path), "CWD/horizontal/%s/%s", direc,aux_nom);
-        printf("Ahora moveremos el archivo: %s a su destino horizontal\n", aux_nom);
+        //printf("Ahora moveremos el archivo: %s a su destino horizontal\n", aux_nom);
     } else {
         snprintf(path, sizeof(path), "CWD/vertical/%s/%s", direc,aux_nom);
-        printf("Ahora moveremos el archivo: %s a su destino vertical\n", aux_nom);
+        //printf("Ahora moveremos el archivo: %s a su destino vertical\n", aux_nom);
     }
     
     if (rename(aux_nom, path) != 0){

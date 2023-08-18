@@ -21,17 +21,14 @@ int main() {
         char palabra [200];
 
         printf("El nombre del archivo es: %s\n", result[i].nombre);
-        printf("La orientacion del archivo: %s\n", result[i].tipo);
-        printf("La dimension horizontal es: %d\n", result[i].cant_letras);
-        printf("La dimension vertical es: %d\n", result[i].cant_lineas);
+        // printf("La orientacion del archivo: %s\n", result[i].tipo);
+        // printf("La dimension horizontal es: %d\n", result[i].cant_letras);
+        // printf("La dimension vertical es: %d\n", result[i].cant_lineas);
         
         
 
         if (strstr(result[i].tipo, "horizontal") != NULL){
-            //printf("Algoritmo horizontal a la marcha\n");
-            horizontal_2(&result[i]);
-            //printf("Logro correr\n");
-
+            horizontal(&result[i]);
 
         }if(strstr(result[i].tipo, "vertical") != NULL){
             vertical(&result[i]);
@@ -47,33 +44,6 @@ int main() {
         if (moverArchivo(&result[i]) != 0){
             return 1;
         }
-
-
-        // if (strstr(result[i].tipo, "horizontal") != NULL){
-        //     //horizontal(&result[i]);
-            
-        //     subPalabra(result[i].cant_letras,result[i].cant_lineas,palabra);
-
-        //     if (crearCarpetaDimension(cwd,sizeof(cwd),&result[i]) < 0){
-        //         return 1;
-        //     }
-
-        //     if (moverArchivo(&result[i]) != 0){
-        //         return 1;
-        //     }
-            
-
-        // } else {
-        //     subPalabra(result[i].cant_letras,result[i].cant_lineas,palabra);
-
-        //     if (crearCarpetaDimension(cwd,sizeof(cwd),&result[i]) < 0){
-        //         return 1;
-        //     }
-
-        //     if (moverArchivo(&result[i]) != 0){
-        //         return 1;
-        //     }
-        // }
 
         printf("---------------------------\n");
     }
