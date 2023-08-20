@@ -447,3 +447,121 @@ for(int i = 0; i< infosuck->cant_letras; i++){
 
 };
 
+bool comparar(char linea[], char palabra[], int cantidad, int largo) {
+    int i = 0;
+    bool flag = false;
+  
+    while (i != largo-1 && !flag) {
+        int num = 0;
+       
+
+        if (linea[i] == toupper(palabra[0])) {
+
+            while (palabra[num] != '.') {
+
+                if (linea[i] != toupper(palabra[num])) {
+                    flag = false;
+                    break;
+                } else if (num == cantidad -1 && linea[i] == toupper(palabra[num])) {
+                    flag = true;
+                    printf("Encontraste la palabra!!\n");
+                    break;
+                }
+                num++;
+                i++;
+            }
+        } else {
+            i++;
+        }
+    }
+    return flag;
+}
+void vertical2(InfoLinea * infosuck){
+
+// Creacion de matriz
+    char Matrix[infosuck->cant_letras][infosuck->cant_lineas];
+    FILE * file = fopen(infosuck->nombre,"r");
+    
+    if (file == NULL) {
+        printf("No se pudo abrir el archivo.\n");
+        return;
+    }
+
+    int fila = 0;
+
+    while (fila < infosuck->cant_lineas && !feof(file)){     
+        int p;
+
+        while ((p = fgetc(file)) != EOF && p!= '\n') {   //salto de la primera linea 
+        }
+
+        for(int i = 0; i < infosuck->cant_letras; i++){
+
+            char c = fgetc(file);
+            if(c == EOF ){
+                break;
+            }else if (c != ' ') {
+                Matrix[i][fila] = c;
+                
+            }else if (c != '\n') {
+                Matrix[i][fila] = c;
+                          
+            }if (c == ' '){
+                i--;
+            }; 
+        };
+
+        fila++;
+
+        if (fila == infosuck->cant_letras){
+            break;
+        }
+    };
+
+    fclose(file);
+    
+    int canti = 0;
+    canti += infosuck->cant_letras;
+
+    char word[20];
+    strcpy(word, infosuck->nombre);
+    size_t tamano = strlen(word);
+    if (tamano > 4 && strcmp(word+ tamano - 4, ".txt") == 0){
+        word[tamano -4] = '\0';
+    }
+
+    int letterCount = 0;
+
+    for (int i = 0; word[i] != '\0'; i++) {
+        if (isalpha(word[i])) {
+            letterCount++;
+        }
+    }
+    
+    
+
+    for (int c = 0; c < infosuck->cant_letras; c++) { 
+        char palabran[infosuck->cant_letras];
+        int num= 0;
+       
+        for (int f = 0; f< infosuck->cant_lineas; f++) { 
+
+            palabran[num] = Matrix[c][f];
+            num++;
+                
+        }  
+        int num_chars = sizeof(palabran) / sizeof(palabran[0]);
+        int num_c = sizeof(word) / sizeof(word[0]);
+
+        bool banderita = comparar(palabran,word, letterCount, num_chars);
+
+        if (banderita){
+            break;
+        }
+ 
+    }
+
+    
+};
+
+
