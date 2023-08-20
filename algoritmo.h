@@ -38,5 +38,6 @@ int moverArchivo(InfoLinea * inf);
 
 int crearCarpetaDimension(char * buffer, size_t size, InfoLinea * inf);
 
-
+void vertical2(InfoLinea * inf);
+bool comparar(char linea[], char palabra[], int cantidad, int largo);
 #endif
