@@ -342,7 +342,9 @@ int _inicio(char * buffer, size_t size){
 
 
 void vertical(InfoLinea * infosuck){
-
+    clock_t start, end;
+    double cpu_time;
+    start = clock();
 // Creacion de matriz
     char Matrix[infosuck->cant_letras][infosuck->cant_lineas];
     FILE * file = fopen(infosuck->nombre,"r");
@@ -408,8 +410,11 @@ for(int i = 0; i< infosuck->cant_letras; i++){
             if (toupper(p[num]) == Matrix[f][c]) { 
             
                 if (p[num+1] == '.') { 
-                    printf("\nSe ha encontrado la palabra con éxito\n");
 
+                    printf("\nSe ha encontrado la palabra con éxito\n");
+                    end = clock();
+                    cpu_time = ((double)(end-start))/CLOCKS_PER_SEC;
+                    printf("Tiempo de demora: %f segundos\n", cpu_time);
                     printf("La palabra es: \n");
 
                     while (num >=0){
@@ -435,6 +440,7 @@ for(int i = 0; i< infosuck->cant_letras; i++){
 
     if (flag) {
     printf("No se encontró la palabra\n");
+    end = clock();
     }
 
 };
