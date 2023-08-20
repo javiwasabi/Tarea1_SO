@@ -171,7 +171,7 @@ void horizontal(InfoLinea * infosuck) {
 
             nlinea[minicont] = '\0';
             if (horizontal_aux(infosuck->nombre,nlinea) == 1){
-                printf("EL TAMAÑO DE LA PALABRA ES: %d , %d\n", infosuck->cant_letras,infosuck->cant_lineas);
+            
                 printf("Felicitaciones, se ha encontrado la palabra\n");
                 end = clock();
                 cpu_time = ((double)(end - start)) / CLOCKS_PER_SEC;
@@ -349,7 +349,7 @@ void vertical(InfoLinea * infosuck){
 // Creacion de matriz
     char Matrix[infosuck->cant_letras][infosuck->cant_lineas];
     FILE * file = fopen(infosuck->nombre,"r");
-    printf("EL TAMAÑO DE LA PALABRA ES: %d , %d\n", infosuck->cant_letras,infosuck->cant_lineas);
+
     if (file == NULL) {
         printf("No se pudo abrir el archivo.\n");
         return;
@@ -413,7 +413,7 @@ for(int i = 0; i< infosuck->cant_letras; i++){
                 if (p[num+1] == '.') { 
 
                     printf("\nSe ha encontrado la palabra con éxito\n");
-                    printf("EL TAMAÑO DE LA PALABRA ES: %d , %d\n", infosuck->cant_letras,infosuck->cant_lineas);
+                
                     end = clock();
                     cpu_time = ((double)(end-start))/CLOCKS_PER_SEC;
                     printf("Tiempo de demora: %f segundos\n", cpu_time);
